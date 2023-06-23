@@ -76,6 +76,12 @@ function drawIndividualChart(chartIndex, columnTitle, dataSet, idSuffix) {
 
 
     var options = {
+        width: '100%',
+        chartArea: {
+            width: '100%',
+            left: 0,
+            right: 0
+        },
         curveType: 'function',
         colors: [chartColors[chartIndex % chartColors.length]],
         pointSize: 10,
@@ -173,7 +179,7 @@ google.charts.setOnLoadCallback(function () {
                                     <div id="legend2022"></div>
                                     <div id="chart12022" class="chart-div-top"></div>
                                     <div id="chart22022" class="chart-div"></div>
-                                    <div id="chart32022" class="chart-div"></div>
+                                    <div id="chart32022" class="chart-div-last"></div>
                                     <div id="table-container1" class="table-container">
                                         <div id="table1" class="table-first">
                                             <div>
@@ -210,7 +216,7 @@ google.charts.setOnLoadCallback(function () {
                                         <div class="charts2" id="charts2021">
                                             <div id="chart12021" class="chart-div-top"></div>
                                             <div id="chart22021" class="chart-div"></div>
-                                            <div id="chart32021" class="chart-div"></div>
+                                            <div id="chart32021" class="chart-div-last"></div>
                                                         <div id="table-container2" class="table-container">
                                                                 <div id="table2" class="table-first">
                                                                         <div>
@@ -247,7 +253,7 @@ google.charts.setOnLoadCallback(function () {
                                 <div class="charts3" id="charts2020">
                                     <div id="chart12020" class="chart-div-top"></div>
                                     <div id="chart22020" class="chart-div"></div>
-                                    <div id="chart32020" class="chart-div"></div>
+                                    <div id="chart32020" class="chart-div-last"></div>
                                     <div id="table-container3" class="table-container">
 
                                             <div id="table3" class="table-first">
@@ -293,7 +299,7 @@ google.charts.setOnLoadCallback(function () {
                                 <div class="charts4" id="charts2019">
                                     <div id="chart12019" class="chart-div-top"></div>
                                     <div id="chart22019" class="chart-div"></div>
-                                    <div id="chart32019" class="chart-div"></div>
+                                    <div id="chart32019" class="chart-div-last"></div>
                                     <div id="table-container4" class="table-container">
                                         <div id="table4" class="table-first">
                                             <div>
@@ -333,7 +339,7 @@ google.charts.setOnLoadCallback(function () {
                                     <div class="charts5" id="charts2018">
                                         <div id="chart12018" class="chart-div-top"></div>
                                         <div id="chart22018" class="chart-div"></div>
-                                        <div id="chart32018" class="chart-div"></div>
+                                        <div id="chart32018" class="chart-div-last"></div>
                                         <div id="table-container5" class="table-container">
 
                                             <div id="table5" class="table-first">
@@ -375,7 +381,7 @@ google.charts.setOnLoadCallback(function () {
                                     <div class="charts6" id="charts2017">
                                         <div id="chart12017" class="chart-div-top"></div>
                                         <div id="chart22017" class="chart-div"></div>
-                                        <div id="chart32017" class="chart-div"></div>
+                                        <div id="chart32017" class="chart-div-last"></div>
                                         <div id="table-container6" class="table-container">
 
                                              <div id="table6" class="table-first">

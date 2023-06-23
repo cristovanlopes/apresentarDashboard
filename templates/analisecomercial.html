@@ -80,6 +80,12 @@ function drawIndividualChart(chartIndex, columnTitle, dataSet, idSuffix) {
 
 
     var options = {
+        width: '100%',
+        chartArea: {
+            width: '100%',
+            left: 0,
+            right: 0
+        },
         curveType: 'function',
         colors: [chartColors[chartIndex % chartColors.length]],
         pointSize: 10,

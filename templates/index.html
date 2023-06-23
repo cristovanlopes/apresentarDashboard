@@ -80,14 +80,25 @@ function drawIndividualChart(chartIndex, columnTitle, dataSet, idSuffix) {
 
 
     var options = {
+        width: '100%',
+        chartArea: {
+            width: '100%',
+            left: 0,
+            right: 0
+        },
         curveType: 'function',
         colors: [chartColors[chartIndex % chartColors.length]],
         pointSize: 10,
+        
+       
         vAxis: {
             textPosition: 'none',
             gridlines: {
+               
                 color: 'transparent'  // adicione esta linha para remover as linhas de grade verticais
             }
+            
+            
         },
         hAxis: {
             textStyle: {
@@ -161,28 +172,32 @@ window.onclick = function(event) {
 <body>
 <div class="direita">
 
-         <div class="laranja">
-            <div class="slogan">
-              <img src="/static/images/logo.png" alt="Logo">
+<div class="laranja">
+            <div class="conteiner-menu">
+                <div class="slogan">
+                    <img src="/static/images/logo.png" alt="Logo">
+      
+      
+                    
+                </div>
 
-
-              
+                <div class="menu-central">
+                      <select id="mySelect" onchange="myFunction()">
+                          <option value="/templates/faturamento.html">Faturamento</option>
+                          <option value="/templates/analisecomercial.html">Análise Comercial</option>
+                          <option value="/templates/metarealizado.html">Metas Realizadas</option>
+                      </select>          
+                    
+                    <script>
+                          function myFunction() {
+                            var x = document.getElementById("mySelect").value;
+                            window.location.href = x;
+                          }
+                    </script>
+                  
+                </div>
             </div>
-            <div class="menu-central">
-                <select id="mySelect" onchange="myFunction()">
-                    <option value="/templates/faturamento.html">Faturamento</option>
-                    <option value="/templates/analisecomercial.html">Análise Comercial</option>
-                    <option value="/templates/metarealizado.html">Metas Realizadas</option>
-                  </select>          
-              
-                <script>
-                    function myFunction() {
-                      var x = document.getElementById("mySelect").value;
-                      window.location.href = x;
-                    }
-                  </script>
             
-          </div>
           
          
     <div class="coluna-charts">
@@ -201,7 +216,7 @@ window.onclick = function(event) {
                 <div id="chart62023" class="chart-div"></div>
                 <div id="chart72023" class="chart-div"></div>
                 <div id="chart82023" class="chart-div"></div>
-                <div id="chart92023" class="chart-div"></div>
+                <div id="chart92023" class="chart-div-last"></div>
                  <div id="table-container1" class="table-container">
                     <div id="table1" class="table-first">
                         <div>

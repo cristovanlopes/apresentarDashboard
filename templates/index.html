@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=0.25">
     <title>Dashboard Grafico</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
 
@@ -168,20 +168,18 @@ window.onclick = function(event) {
           </div>
           
           <div class="menu-central">
-            <select id="mySelect">
-              <option value="/template/faturamento.html">Faturamento</option>
-              <option value="/template/analisecomercial.html">Análise Comercial</option>
-              <option value="/template/metarealizado.html">Metas Realizadas</option>
-            </select>
-          
-            <button onclick="myFunction()">Go to page</button>
+            <select id="mySelect" onchange="myFunction()">
+                <option value="/templates/faturamento.html">Faturamento</option>
+                <option value="/templates/analisecomercial.html">Análise Comercial</option>
+                <option value="/templates/metarealizado.html">Metas Realizadas</option>
+              </select>          
           
             <script>
-              function myFunction() {
-                var x = document.getElementById("mySelect").value;
-                window.location.href = x;
-              }
-            </script>
+                function myFunction() {
+                  var x = document.getElementById("mySelect").value;
+                  window.location.href = x;
+                }
+              </script>
 
     </div>
     <div class="coluna-charts">

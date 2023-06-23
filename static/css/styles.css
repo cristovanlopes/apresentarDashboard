@@ -29,10 +29,13 @@ body {
     background-color: #f5f5f5;
     padding: 10px;
     text-align: center;
-    font-size: 20px;
+    font-size: 40px;
     border-bottom: 1px solid #ccc;
 }
-
+.mySelect{
+    font-size: 40px;
+    padding: 20px;
+  }
 .coluna-charts {
     flex: 3;
     display: flex;
@@ -228,3 +231,5 @@ body {
 .table-soma td:nth-child(11) {
     background-color: #ead23a; /* Altera o fundo para verde escuro */
 }
+
+

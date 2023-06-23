@@ -164,24 +164,27 @@ window.onclick = function(event) {
          <div class="laranja">
             <div class="slogan">
               <img src="/static/images/logo.png" alt="Logo">
+
+
+              
             </div>
+            <div class="menu-central">
+                <select id="mySelect" onchange="myFunction()">
+                    <option value="/templates/faturamento.html">Faturamento</option>
+                    <option value="/templates/analisecomercial.html">Análise Comercial</option>
+                    <option value="/templates/metarealizado.html">Metas Realizadas</option>
+                  </select>          
+              
+                <script>
+                    function myFunction() {
+                      var x = document.getElementById("mySelect").value;
+                      window.location.href = x;
+                    }
+                  </script>
+            
           </div>
           
-          <div class="menu-central">
-            <select id="mySelect" onchange="myFunction()">
-                <option value="/templates/faturamento.html">Faturamento</option>
-                <option value="/templates/analisecomercial.html">Análise Comercial</option>
-                <option value="/templates/metarealizado.html">Metas Realizadas</option>
-              </select>          
-          
-            <script>
-                function myFunction() {
-                  var x = document.getElementById("mySelect").value;
-                  window.location.href = x;
-                }
-              </script>
-
-    </div>
+         
     <div class="coluna-charts">
         <div class="azul-chart1">
             <div class="ano1vertical">2023</div>

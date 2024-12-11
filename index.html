@@ -3,6 +3,215 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=0.25">
     <title>Dashboard Grafico</title>
+    <style>body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    background-color: #ccc;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    height: 0px;
+    /* Define a altura */
+    width: 100%;
+    /* Define a largura */
+}
+
+.menu-central {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #ccc;
+    padding: 5px;
+    text-align: center;
+    font-size: 20px;
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+}
+
+.slogan {
+    height: 3;
+    margin-right: 10px;
+    /* Espaço entre slogan e menu-central */
+}
+
+.coluna-esquerda {
+    flex: 0.2;
+}
+
+#mySelect {
+    width: 200px;
+    height: 40px;
+}
+
+.direita {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.coluna-charts {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+}
+
+.laranja {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-esquerdo,
+.outros-itens {
+    margin: 10px;
+}
+
+.azul-chart1,
+.azul-chart2 {
+    flex: 1;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-color: #383838;
+    border-radius: 10px;
+    min-width: 400px;
+}
+
+.azul-chart1 {
+    display: flex;
+    flex-direction: row;
+}
+
+.ano1vertical,
+.ano2vertical {
+    flex: 0.1;
+    background-color: #383838;
+    font-size: 50px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    letter-spacing: 10px;
+    text-align: center;
+    color: white;
+}
+
+.charts1,
+.charts2 {
+    flex: 4;
+}
+
+#chartContainer,
+#charts2022 {
+    background-color: #383838;
+    border-radius: 10px;
+}
+
+.chart-div {
+    height: 65px;
+}
+
+.chart-div-top {
+    height: 68px;
+}
+
+.chart-div-last {
+    height: 109px;
+}
+
+#legend2023,
+#title-top {
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.table {
+    height: 2rem;
+    width: 100%;
+}
+
+.table-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 700px;
+}
+
+.table-soma {
+    margin-left: 800px;
+    margin-top: 10px;
+}
+
+.table-first td,
+.table-soma td:nth-child(1),
+.table-soma td:nth-child(3) {
+    border: 1px solid white;
+    white-space: nowrap;
+    color: white;
+}
+
+.table-first .row-1 td:nth-child(2) {
+    color: #558bc9;
+}
+
+.table-first .row-1 td:nth-child(4) {
+    color: orange;
+}
+
+.table-first .row-2 td:nth-child(3) {
+    color: #6695f5;
+}
+
+.table-first .row-2 td:nth-child(5) {
+    color: yellow;
+}
+
+.table-soma td:nth-child(2) {
+    background-color: #749f74;
+}
+
+.table-soma td:nth-child(4) {
+    background-color: #558bc9;
+}
+
+.table-soma td:nth-child(5) {
+    background-color: yellow;
+}
+
+.table-soma td:nth-child(6) {
+    background-color: #429142;
+}
+
+.table-soma td:nth-child(7) {
+    background-color: #e1b3e1;
+}
+
+.table-soma td:nth-child(8) {
+    background-color: #cdf8cd;
+}
+
+.table-soma td:nth-child(9) {
+    background-color: #10658d;
+}
+
+.table-soma td:nth-child(10) {
+    background-color: #858585;
+}
+
+.table-soma td:nth-child(11) {
+    background-color: #ead23a;
+}</style>
     <link rel="stylesheet" href="/static/css/styles.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>

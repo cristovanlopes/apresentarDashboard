@@ -4,45 +4,63 @@ body {
     padding: 0;
     display: flex;
     flex-direction: row;
-    background-color: #ccc;;
+    background-color: #ccc;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-body {
-  background-repeat: no-repeat;
-  background-size: cover;
-  
+
+.container-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    height: 0px;
+    /* Define a altura */
+    width: 100%;
+    /* Define a largura */
 }
+
 .menu-central {
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #ccc;
+    padding: 5px;
+    text-align: center;
+    font-size: 20px;
+    height: 40px;
+    border-bottom: 1px solid #ccc;
 }
+
+.slogan {
+    height: 3;
+    margin-right: 10px;
+    /* Espaço entre slogan e menu-central */
+}
+
 .coluna-esquerda {
     flex: 0.2;
 }
+
 #mySelect {
-    width: 200px; /* Defina a largura desejada */
-    height: 40px; /* Defina a altura desejada */
-  }
+    width: 200px;
+    height: 40px;
+}
+
 .direita {
     flex: 3;
     display: flex;
     flex-direction: column;
 }
 
-.menu-central {
-    background-color: #ccc;;
-    padding: 10px;
-    text-align: center;
-    font-size: 40px;
-    border-bottom: 1px solid #ccc;
-}
-
 .coluna-charts {
     flex: 3;
     display: flex;
     flex-direction: column;
-    overflow-x: auto; /* Adicione a propriedade overflow-x para permitir rolagem horizontal */
-  }
-  
+    overflow-x: auto;
+}
 
 .laranja {
     display: flex;
@@ -50,48 +68,28 @@ body {
     gap: 10px;
 }
 
-.slogan, .menu-esquerdo, .outros-itens {
+.menu-esquerdo,
+.outros-itens {
     margin: 10px;
 }
 
 .azul-chart1,
 .azul-chart2 {
-  flex: 1;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  background-color: #383838;
-  border-radius: 10px;
-  min-width: 400px; /* Defina a largura mínima desejada */
+    flex: 1;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-color: #383838;
+    border-radius: 10px;
+    min-width: 400px;
 }
 
-/*vertical ano*/
 .azul-chart1 {
     display: flex;
     flex-direction: row;
 }
 
-.ano1vertical {
-    flex: 0.1;
-    background-color:#383838; /* Para visualizar a div */
-    width: 10px;
-    font-size: 50px;
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    letter-spacing: 10px;
-    text-align: center;
-    color: white;
-}
-
-.charts1 {
-    flex: 4;
-}
-
-.azul-chart2 {
-    display: flex;
-    flex-direction: row;
-}
-
+.ano1vertical,
 .ano2vertical {
     flex: 0.1;
     background-color: #383838;
@@ -103,11 +101,13 @@ body {
     color: white;
 }
 
+.charts1,
 .charts2 {
     flex: 4;
 }
 
-#chartContainer, #charts2022 {
+#chartContainer,
+#charts2022 {
     background-color: #383838;
     border-radius: 10px;
 }
@@ -124,21 +124,13 @@ body {
     height: 109px;
 }
 
-#legend2023 {
-    font-size: 20px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+#legend2023,
 #title-top {
     font-size: 20px;
     color: white;
     text-align: center;
     margin: 0 auto;
 }
-
 
 .table {
     height: 2rem;
@@ -148,88 +140,70 @@ body {
 .table-container {
     display: flex;
     justify-content: space-between;
-    max-width: 700px; /* Ajuste esse valor conforme necessário */
+    max-width: 700px;
 }
-
-
 
 .table-soma {
-    margin-left: 800px; /* Move a div para a direita */
-    margin-top: 10px; /* Adiciona um espaço entre as divs */
+    margin-left: 800px;
+    margin-top: 10px;
 }
 
-.table-first td {
+.table-first td,
+.table-soma td:nth-child(1),
+.table-soma td:nth-child(3) {
     border: 1px solid white;
-    white-space: nowrap; /* Impede a quebra de linha */
+    white-space: nowrap;
+    color: white;
 }
 
-
-.table-first .row-1 td:nth-child(1), .table-first .row-1 td:nth-child(3), .table-first .row-1 td:nth-child(5) {
-  color: white; /* Altere para a cor do texto desejada */
-}
-
-.table-first .row-1 td:nth-child(2){
+.table-first .row-1 td:nth-child(2) {
     color: #558bc9;
 }
-.table-first .row-1 td:nth-child(4){
+
+.table-first .row-1 td:nth-child(4) {
     color: orange;
-}
-
-
-.table-first .row-2 td:nth-child(1), .table-first .row-2 td:nth-child(2), .table-first .row-2 td:nth-child(4) {
-  color: white; /* Altere para a cor do texto desejada */
 }
 
 .table-first .row-2 td:nth-child(3) {
     color: #6695f5;
 }
-.table-first .row-2 td:nth-child(5){
+
+.table-first .row-2 td:nth-child(5) {
     color: yellow;
 }
 
-
-
-.table-soma td:nth-child(1),
-.table-soma td:nth-child(3) {
-    color: white;
-}
-
 .table-soma td:nth-child(2) {
-    background-color: #749f74; /* Altera o fundo para verde */
+    background-color: #749f74;
 }
 
 .table-soma td:nth-child(4) {
-    background-color: #558bc9; /* Altera o fundo para azul */
+    background-color: #558bc9;
 }
 
 .table-soma td:nth-child(5) {
-    background-color: yellow; /* Altera o fundo para amarelo */
+    background-color: yellow;
 }
 
 .table-soma td:nth-child(6) {
-    background-color: #429142; /* Altera o fundo para verde escuro */
+    background-color: #429142;
 }
-
 
 .table-soma td:nth-child(7) {
-    background-color: #e1b3e1; /* Altera o fundo para verde escuro */
+    background-color: #e1b3e1;
 }
 
-
 .table-soma td:nth-child(8) {
-    background-color: #cdf8cd; /* Altera o fundo para verde escuro */
+    background-color: #cdf8cd;
 }
 
 .table-soma td:nth-child(9) {
-    background-color: #10658d; /* Altera o fundo para verde escuro */
+    background-color: #10658d;
 }
 
 .table-soma td:nth-child(10) {
-    background-color: #858585; /* Altera o fundo para verde escuro */
+    background-color: #858585;
 }
 
 .table-soma td:nth-child(11) {
-    background-color: #ead23a; /* Altera o fundo para verde escuro */
+    background-color: #ead23a;
 }
-
-

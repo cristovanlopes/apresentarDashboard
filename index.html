@@ -63,7 +63,7 @@ body {
 .coluna-charts { display: flex; flex-direction: column; gap: 24px; padding: 24px 28px 40px; overflow-x: auto; }
 
 .azul-chart1, .azul-chart2 {
-  display: flex; flex-direction: row; min-width: 720px;
+  display: flex; flex-direction: row; min-width: 0;
   margin: 0; padding: 20px 24px 20px 12px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -108,9 +108,25 @@ body {
 }
 .table-soma td:nth-child(1), .table-soma td:nth-child(3) { color: var(--muted); font-weight: 500; }
 
+.rolagem { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.dica { display: none; }
+.table-first, .table-soma { max-width: 100%; overflow-x: auto; }
+
 @media (max-width: 720px) {
-  .conteiner-menu { padding: 10px 16px; }
-  .coluna-charts { padding: 16px; }
+  .conteiner-menu { padding: 10px 14px; }
+  #mySelect { width: 180px; }
+  .coluna-charts { padding: 12px 12px 32px; gap: 16px; }
+  .azul-chart1, .azul-chart2 { flex-direction: column; padding: 16px 14px; }
+  .ano1vertical, .ano2vertical {
+    flex: none; writing-mode: horizontal-tb; transform: none;
+    font-size: 22px; letter-spacing: .15em; text-align: left; margin: 0 0 8px 4px;
+  }
+  #title-top { font-size: 16px; }
+  #legend2023 ul { gap: 6px; }
+  #legend2023 li { padding: 4px 9px; font-size: 12px; }
+  .dica { display: block; margin: 0 0 6px 4px; font-size: 12px; color: var(--muted); }
+  .table-container { gap: 4px; }
+  .table-first td, .table-soma td { padding: 6px 10px; font-size: 12px; }
 }
 </style>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -127,24 +143,32 @@ var titulos = ['FAT($)','RENT($)','RENT(%)','VEND QUAN','ENTR QUAN','ESTQ($)','R
 // Paleta com bom contraste sobre fundo escuro
 var cores = ['#f5b942','#4fd1a5','#6ea8fe','#ff8a5c','#5ed3f3','#a3acc2','#c3e86b','#f58fb4','#a48cff'];
 
-function fmt(v) { return Number(v).toLocaleString('pt-BR'); }
+function isMobile() { return window.innerWidth <= 720; }
 
-function drawIndividualChart(chartIndex, titulo, dataSet, idSuffix) {
+var compacto = new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 });
+function fmt(v, curto) {
+  // No celular, valores grandes viram "62,5 mi" para não se sobreporem
+  if (curto && Math.abs(v) >= 100000) return compacto.format(v);
+  return Number(v).toLocaleString('pt-BR');
+}
+
+function drawIndividualChart(chartIndex, titulo, dataSet, idSuffix, qtdMeses) {
+  var mob = isMobile();
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Mês');
   data.addColumn('number', titulo);
 
-  meses.forEach(function (mes, i) {
+  meses.slice(0, qtdMeses).forEach(function (mes, i) {
     var linha = dataSet[i];
     var semDados = linha.every(function (v) { return v === 0; });
-    data.addRow([mes, semDados ? null : linha[chartIndex - 1]]);   // mês sem dados = vazio, não zero
+    data.addRow([mob ? mes.slice(0, 3) : mes, semDados ? null : linha[chartIndex - 1]]);   // mês sem dados = vazio, não zero
   });
 
   var view = new google.visualization.DataView(data);
   view.setColumns([0, 1, {
     calc: function (dt, row) {
       var v = dt.getValue(row, 1);
-      return v === null ? null : fmt(v);
+      return v === null ? null : fmt(v, mob);
     },
     type: 'string',
     role: 'annotation'
@@ -162,11 +186,12 @@ function drawIndividualChart(chartIndex, titulo, dataSet, idSuffix) {
     pointSize: 7,
     legend: { position: 'none' },
     chartArea: { left: '3%', width: '94%', top: 28, bottom: ultimo ? 36 : 8 },
-    annotations: { alwaysOutside: true, textStyle: { color: cor, fontName: 'Manrope', fontSize: 12, auraColor: 'none' } },
+    annotations: { alwaysOutside: true, textStyle: { color: cor, fontName: 'Manrope', fontSize: mob ? 11 : 12, auraColor: 'none' } },
     vAxis: { textPosition: 'none', gridlines: { color: 'transparent' }, baselineColor: 'transparent' },
     hAxis: {
       textPosition: ultimo ? 'out' : 'none',
-      textStyle: { color: '#8f9bb8', fontName: 'Manrope', fontSize: 13 },
+      showTextEvery: 1,
+      textStyle: { color: '#8f9bb8', fontName: 'Manrope', fontSize: mob ? 12 : 13 },
       gridlines: { color: 'transparent' },
       baselineColor: 'rgba(255,255,255,.08)'
     }
@@ -177,7 +202,14 @@ function drawIndividualChart(chartIndex, titulo, dataSet, idSuffix) {
 }
 
 function drawCharts(dataSet, idSuffix) {
-  for (var i = 1; i <= titulos.length; i++) drawIndividualChart(i, titulos[i - 1], dataSet, idSuffix);
+  var qtd = 12;
+  if (isMobile()) {
+    // No celular, mostra só até o último mês com dados e deixa o ano cheio rolar para o lado
+    qtd = 0;
+    dataSet.forEach(function (l, i) { if (!l.every(function (v) { return v === 0; })) qtd = i + 1; });
+  }
+  document.getElementById('grade' + idSuffix).style.minWidth = isMobile() ? Math.max(qtd * 64, 280) + 'px' : '';
+  for (var i = 1; i <= titulos.length; i++) drawIndividualChart(i, titulos[i - 1], dataSet, idSuffix, qtd);
 }
 
 function createLegend(id) {
@@ -200,7 +232,10 @@ google.charts.setOnLoadCallback(function () {
 
 // Redesenha ao redimensionar a janela
 var resizeTimer;
+var ultimaLargura = window.innerWidth;
 window.addEventListener('resize', function () {
+  if (window.innerWidth === ultimaLargura) return;   // ignora a barra do navegador subindo/descendo
+  ultimaLargura = window.innerWidth;
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(desenharTudo, 200);
 });
@@ -229,6 +264,7 @@ window.addEventListener('resize', function () {
         <div class="charts1" id="chartContainer">
           <div id="title-top">Análise comercial – Goiânia, geral (lojas)</div>
           <div id="legend2023"></div>
+          <div class="rolagem"><div class="grade" id="grade2023">
           <div id="chart12023" class="chart-div-top"></div>
           <div id="chart22023" class="chart-div"></div>
           <div id="chart32023" class="chart-div"></div>
@@ -238,6 +274,7 @@ window.addEventListener('resize', function () {
           <div id="chart72023" class="chart-div"></div>
           <div id="chart82023" class="chart-div"></div>
           <div id="chart92023" class="chart-div-last"></div>
+          </div></div>
 
           <div id="table-container1" class="table-container">
             <div id="table1" class="table-first"><table>
@@ -254,6 +291,8 @@ window.addEventListener('resize', function () {
       <div class="azul-chart2">
         <div class="ano2vertical">2022</div>
         <div class="charts2" id="charts2022">
+          <p class="dica">Deslize para o lado para ver todos os meses</p>
+          <div class="rolagem"><div class="grade" id="grade2022">
           <div id="chart12022" class="chart-div-top"></div>
           <div id="chart22022" class="chart-div"></div>
           <div id="chart32022" class="chart-div"></div>
@@ -263,6 +302,7 @@ window.addEventListener('resize', function () {
           <div id="chart72022" class="chart-div"></div>
           <div id="chart82022" class="chart-div"></div>
           <div id="chart92022" class="chart-div-last"></div>
+          </div></div>
 
           <div id="table-container2" class="table-container">
             <div id="table2" class="table-first"><table>
